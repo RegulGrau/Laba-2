@@ -11,9 +11,9 @@ public class Stream {
         return required_time;
     }
     public void change_time(int time){
-    	required_time -= time;
+    	required_time = required_time - time;
     }
     public void perform_stream() {
-    	System.out.println(String.format("Stream "+ stream_id + " was successful in "+required_time+ "sec." ));
+    	System.out.println(String.format("Stream "+ stream_id + " was successful in "+ required_time+ "sec." ));
     }
 }
