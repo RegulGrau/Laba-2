@@ -2,18 +2,14 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class Process {
-	private int process_id, all_time = 0;
-	private ArrayList<Stream> streams = new ArrayList<Stream>();
-	private Random rand = new Random();
+	public int proc_id, all_time = 0;
+	public ArrayList<Stream> streams = new ArrayList<Stream>();
+	public Random rand = new Random();
 	public Process(int process_id) {
-		this.process_id = process_id;
+		this.proc_id = process_id;
 	}
-	public int get_process_id() {
-		return process_id;
-	}
-	public ArrayList<Stream> get_streams(){
-		return streams;
-	}
+
+
 	public void create_streams() {
 		for (int i = 0; i < rand.nextInt(10) + 1; i++) {
 			int time = rand.nextInt(10) + 1;
@@ -21,7 +17,7 @@ public class Process {
 			all_time += time;
 		}
 	}
-	public void perform_process() {
-		System.out.println(String.format("Process " + process_id + " was successful in "+all_time+" sec."));
+	public void perf_proc() {
+		System.out.println(String.format("Process " + proc_id + " was successful in "+all_time+" sec."));
 	}
 }

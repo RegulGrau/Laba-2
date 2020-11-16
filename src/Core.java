@@ -1,68 +1,54 @@
 import java.util.ArrayList;
-
 public class Core {
-	private ArrayList<Process> processes = new ArrayList<Process>();
-	private int allocated_time, number_prococesses;
-	public void set_time(int time) {
-		if(time > 0) 
-			allocated_time = time;
-		else 
-			end();
-	}
-	public void set_number_process(int number) {
-		if(number > 0) 
-			number_prococesses = number;
-		else 
-			end();
-	}
-	public void end() {
-		
-		
-		System.out.println("Incorrect input");
-		System.exit(0);
-	}
-	public void create_processes() {
-		for (int i = 0; i < number_prococesses; i++) {
-			processes.add(new Process(i));
-			processes.get(i).create_streams();
+	public ArrayList<Process> proc = new ArrayList<Process>();
+	public int allocated_time, numb_proc;
+	public void create_proc() {
+		for (int i = 0; i < numb_proc; i++) {
+			proc.add(new Process(i));
+			proc.get(i).create_streams();
 		}
 	}
 	public void print() {
-		for (int i = 0; i < number_prococesses; i++) {
-			System.out.println(String.format("\nProcess %d {", processes.get(i).get_process_id()));
-			
-			for (int j = 0; j < processes.get(i).get_streams().size(); j++) {
-				System.out.println(String.format("Stream %d - time: %d sec.", processes.get(i).get_streams().get(j).get_stream_id(), processes.get(i).get_streams().get(j).get_required_time()));
+		for (int i = 0; i < numb_proc; i++) {
+			System.out.println(String.format("\nProcess %d {", proc.get(i).proc_id));	
+			for (int j = 0; j < proc.get(i).streams.size(); j++) {
+				System.out.println(String.format("Stream %d - time: %d sec.", proc.get(i).streams.get(j).stream_id, proc.get(i).streams.get(j).req_time));
 			}
 			System.out.println("}");
 		}
 		System.out.println();
 	}
 	
-	
-	public void planner() {
+
+	public void start() {
+		allocated_time = 5;
+		numb_proc =3;
+		create_proc();
+		print();
 		System.out.println("Results:\n");
-		while (!processes.isEmpty()) {
-			for (int i = 0; i < number_prococesses; i++) {
-				int process_id = processes.get(i).get_process_id();
+		while (!proc.isEmpty()) {
+			for (int i = 0; i < numb_proc; i++) {
+				int process_id = proc.get(i).proc_id;
 				System.out.println(String.format("Process %d started running {", process_id));
-				for (int j = 0; j < processes.get(i).get_streams().size(); j++) {
-					int stream_id = processes.get(i).get_streams().get(j).get_stream_id();
-					int required_time = processes.get(i).get_streams().get(j).get_required_time();
+				for (int j = 0; j < proc.get(i).streams.size(); j++) {
+					
+					int required_time = proc.get(i).streams.get(j).req_time;
+					int stream_id = proc.get(i).streams.get(j).stream_id;
 					if (required_time > allocated_time) {
 						int remaining_time = required_time - allocated_time;
-						processes.get(i).get_streams().get(j).change_time(allocated_time);
+						proc.get(i).streams.get(j).change_time(allocated_time);
 						System.out.println(String.format("Stream "+stream_id+" was break (required time: "+required_time+" sec. - allocated time: "+allocated_time+" sec. - remaining time: "+remaining_time+" sec.)"));
 					} else {
-						processes.get(i).get_streams().get(j).perform_stream();
-						processes.get(i).get_streams().remove(j);
+						proc.get(i).streams.get(j);
+						System.out.println(String.format("Stream "+ proc.get(i).streams.get(j).stream_id + " was successful in "+ proc.get(i).streams.get(j).req_time+ "sec." ));
+						proc.get(i).streams.remove(j);
 						j--;
 					}
 				}
-				if (processes.get(i).get_streams().isEmpty()) {
-					processes.get(i).perform_process();
-					processes.remove(i);
-					number_prococesses --; 
+				if (proc.get(i).streams.isEmpty()) {
+					proc.get(i).perf_proc();
+					proc.remove(i);
+					numb_proc --; 
 					i--;
 				}
 				System.out.println("}\n");

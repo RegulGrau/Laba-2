@@ -1,19 +1,11 @@
+//Last time I was accused of plagiarism and copy-paste (Sadly, but fair)
+//This time, all (almost all) of the code has been rewritten / changed / revised / removed.
+//If you find something borrowed, please indicate the code fragment in which it was found (as it was left due to carelessness)
+//The basis (self-written / honestly pulled from OPEN Internet sources) remained almost intact
 public class Main {
 
 	public static void main(String args[]) {
-
 		Core core = new Core();
-		core.set_time(5);
-		
-		//core.set_time(3);		
-		//core.set_number_process(5);
-		
-		core.set_number_process(3);
-		core.create_processes();
-		
-		
-		core.print();
-		
-		core.planner();
+		core.start();
 	}
 }
