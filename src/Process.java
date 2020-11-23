@@ -1,7 +1,4 @@
-//Last time I was accused of plagiarism and copy-paste (Sadly, but fair)
-//This time, all (almost all) of the code has been rewritten / changed / revised / removed.
-//If you find something borrowed, please indicate the code fragment in which it was found (as it was left due to carelessness)
-//The basis (self-written / honestly pulled from OPEN Internet sources) remained almost intact
+//If You don't read Readme, please, could You read them?
 
 import java.util.ArrayList;
 import java.util.Random;

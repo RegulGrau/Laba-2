@@ -1,7 +1,4 @@
-//Last time I was accused of plagiarism and copy-paste (Sadly, but fair)
-//This time, all (almost all) of the code has been rewritten / changed / revised / removed.
-//If you find something borrowed, please indicate the code fragment in which it was found (as it was left due to carelessness)
-//The basis (self-written / honestly pulled from OPEN Internet sources) remained almost intact
+//If You don't read Readme, please, could You read them?
 
 import java.util.ArrayList;
 public class Core {
@@ -27,14 +24,13 @@ public class Core {
 
 	public void start() {
 		allocated_time = 5;
-		numb_proc =3;
+		numb_proc = 3;
 		create_proc();
 		print();
 		System.out.println("Results:\n");
 		while (!proc.isEmpty()) {
 			for (int i = 0; i < numb_proc; i++) {
-				int process_id = proc.get(i).proc_id;
-				System.out.println(String.format("Process %d started running {", process_id));
+				System.out.println(String.format("Process "+ (int)proc.get(i).proc_id +" started running {"));
 				for (int j = 0; j < proc.get(i).streams.size(); j++) {
 					
 					int required_time = proc.get(i).streams.get(j).req_time;
